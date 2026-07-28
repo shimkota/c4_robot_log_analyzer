@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>天井施工ロボットログ分析</title>
+    <link rel="stylesheet" href="/static/styles.css?v=deploy-20260727-2" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <h1>天井施工ロボットログ分析</h1>
+        <p id="current-file">CSVを選択してください</p>
+      </div>
+      <div class="toolbar">
+        <select id="log-select" aria-label="ログファイル"></select>
+        <button id="parse-button" type="button">解析</button>
+        <label class="upload-button">
+          <input id="upload-input" type="file" accept=".csv,text/csv" />
+          アップロード
+        </label>
+        <button id="export-timing-button" type="button">工程時間CSV</button>
+        <button id="export-direction-button" type="button">方向マップCSV</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="summary-band" id="summary-cards"></section>
+
+      <section class="panel sessions-panel">
+        <div class="panel-header">
+          <h2>セッション</h2>
+          <div id="session-tabs" class="segmented"></div>
+        </div>
+      </section>
+
+      <section class="panel chart-panel">
+        <div class="panel-header">
+          <h2>工程時間</h2>
+          <div class="segmented" role="group" aria-label="表示モード">
+            <button class="mode-button active" data-mode="aggregate" type="button">集約</button>
+            <button class="mode-button" data-mode="detail" type="button">詳細</button>
+          </div>
+        </div>
+        <div id="timeline-chart" class="chart"></div>
+      </section>
+
+      <section class="panel chart-panel">
+        <div class="panel-header">
+          <h2>セッション合計</h2>
+          <span class="muted">1本の棒 = 1セッション</span>
+        </div>
+        <div id="session-total-chart" class="chart compact-chart"></div>
+      </section>
+
+      <section class="panel map-panel">
+        <div class="panel-header">
+          <h2>方向マップ</h2>
+          <div class="map-legend">
+            <span><i class="legend-box planned"></i>実施対象</span>
+            <span><i class="legend-box skipped"></i>パス</span>
+            <span><i class="legend-box reverse"></i>逆再生</span>
+            <span><i class="legend-box release"></i>置く</span>
+            <span><b>★</b> 差し入れ</span>
+            <span><b>↑/↓/←/→</b> 設置</span>
+            <span><b>E</b> 未定義モーション</span>
+          </div>
+        </div>
+        <div class="map-controls">
+          <div>
+            <span class="control-label">施工方向</span>
+            <div class="segmented map-direction-buttons" id="forward-buttons">
+              <button class="active" data-direction="up" type="button">上</button>
+              <button data-direction="down" type="button">下</button>
+              <button data-direction="left" type="button">左</button>
+              <button data-direction="right" type="button">右</button>
+            </div>
+          </div>
+          <div>
+            <span class="control-label">次列方向</span>
+            <div class="segmented map-direction-buttons" id="shift-buttons">
+              <button data-direction="up" type="button">上</button>
+              <button data-direction="down" type="button">下</button>
+              <button class="active" data-direction="left" type="button">左</button>
+              <button data-direction="right" type="button">右</button>
+            </div>
+          </div>
+        </div>
+        <div id="front-label" class="front-label">施工方向 ↑</div>
+        <div id="direction-map" class="direction-map"></div>
+      </section>
+
+    </main>
+
+    <aside id="detail-panel" class="detail-panel" aria-live="polite">
+      <div class="detail-header">
+        <div>
+          <h2 id="detail-title">詳細</h2>
+          <p id="detail-subtitle">セルまたはボードを選択</p>
+        </div>
+        <button id="detail-close" type="button" aria-label="閉じる">×</button>
+      </div>
+      <div id="detail-content" class="detail-content"></div>
+    </aside>
+
+    <div id="message" class="message" role="status"></div>
+    <script src="/static/app.js?v=deploy-20260727-2"></script>
+  </body>
+</html>

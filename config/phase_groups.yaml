@@ -1,0 +1,12 @@
+groups:
+  move: "移動"
+  centering: "位置調整"
+  scan: "スキャン"
+  calc: "計算・選択"
+  take: "ボード取得"
+  install: "取り付け"
+  reverse: "逆再生"
+  place: "置く"
+  abnormal: "異常対応"
+  manual: "手動対応"
+  unclassified: "未分類"

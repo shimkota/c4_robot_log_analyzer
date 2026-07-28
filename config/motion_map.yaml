@@ -1,0 +1,50 @@
+motions:
+  A:
+    label: "A"
+    direction: null
+  B:
+    label: "B"
+    direction: null
+  C:
+    label: "C"
+    direction: null
+  D:
+    label: "D"
+    direction: null
+  E:
+    label: "E"
+    direction: null
+insert_patterns:
+  1:
+    A: "右上"
+    B: "左上"
+    C: "左下"
+    D: "右下"
+  2:
+    A: "左上"
+    B: "右上"
+    C: "右下"
+    D: "左下"
+  3:
+    A: "左下"
+    B: "右下"
+    C: "右上"
+    D: "左上"
+  4:
+    A: "右下"
+    B: "左下"
+    C: "左上"
+    D: "右上"
+attach_patterns:
+  A: "4マスを1グリッドとした上下方向"
+  B: "4マスを1グリッドとした左右方向"
+  C:
+    1: "下"
+    2: "下"
+    3: "上"
+    4: "上"
+  D:
+    1: "左"
+    2: "右"
+    3: "右"
+    4: "左"
