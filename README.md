@@ -7,11 +7,9 @@ CSV形式のロボットイベントログを行単位で解析し、`AutoStart`
 まず、このパッケージを任意の作業ディレクトリにクローンします。
 
 ```bash
-git clone <repository-url>
-cd 天井施工ロボットログ
+git clone https://github.com/shimkota/c4_robot_log_analyzer.git
+cd c4_robot_log_analyzer
 ```
-
-`<repository-url>` は、このパッケージのリポジトリURLに置き換えてください。クローン先のディレクトリ名を変更した場合は、`cd` の行も実際の名前に合わせます。
 
 Python環境を作成して依存パッケージを入れます。Python 3.11を推奨します。
 
@@ -39,7 +37,7 @@ http://localhost:8080
 2回目以降は、次の手順だけで起動できます。
 
 ```bash
-cd 天井施工ロボットログ
+cd c4_robot_log_analyzer
 source .venv/bin/activate
 uvicorn app.main:app --host 0.0.0.0 --port 8080
 ```
@@ -49,8 +47,8 @@ uvicorn app.main:app --host 0.0.0.0 --port 8080
 Dockerを使う場合は、Python環境の作成なしで起動できます。
 
 ```bash
-git clone <repository-url>
-cd 天井施工ロボットログ
+git clone https://github.com/shimkota/c4_robot_log_analyzer.git
+cd c4_robot_log_analyzer
 docker compose up --build
 ```
 
